@@ -1,65 +1,103 @@
-import Image from "next/image";
+import Link from "next/link";
+import { Microscope, MapPin, Phone, Mail } from "lucide-react";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="bg-white min-h-screen font-sans">
+      {/* 1. HERO SECTION */}
+      <section className="relative bg-[#0b3160] text-white py-20 lg:py-32 overflow-hidden border-b-4 border-[#d91e27]">
+        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center lg:text-left">
+          <div className="space-y-6 max-w-2xl mx-auto lg:mx-0">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest text-red-400">
+              <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" /> Admissions Active For 2026 / 2027
+            </div>
+            <h1 className="text-4xl lg:text-6xl font-black uppercase tracking-tight leading-none">
+              Empowering Future <br />
+              <span className="text-red-400">Leaders In Health, Tech,</span> <br /> Business & Agriculture.
+            </h1>
+            <p className="text-slate-200 text-sm leading-relaxed">
+              Established in 2024 and officially affiliated with the University of Bamenda. We deliver premium clinical education and hands-on vocational training designed for global impact.
+            </p>
+            <div className="pt-4">
+              <Link href="/admissions" className="inline-block px-8 py-4 bg-[#d91e27] hover:bg-[#b8141b] text-white font-black text-xs uppercase tracking-widest rounded transition-all">Explore Programs</Link>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* 2. GALLERY PREVIEW */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="flex justify-between items-end mb-16">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-widest text-[#d91e27]">Institutional Milestones</span>
+            <h2 className="text-3xl lg:text-4xl font-black text-[#0b3160] uppercase mt-2">Inside Balm of Gilead</h2>
+          </div>
         </div>
-      </main>
-    </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-2 aspect-video rounded-2xl overflow-hidden relative group">
+             <img src="/real-milestones/matriculation.jpg" alt="Matriculation" className="w-full h-full object-cover" />
+             <div className="absolute bottom-4 left-4 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#0b3160]">Official Matriculation</div>
+          </div>
+          <div className="grid gap-6">
+            <div className="aspect-square rounded-2xl overflow-hidden relative">
+              <img src="/real-milestones/first-batch-defense.jpg" alt="Defense" className="w-full h-full object-cover" />
+              <div className="absolute bottom-4 left-4 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#0b3160]">Thesis Defense</div>
+            </div>
+            <div className="aspect-square rounded-2xl overflow-hidden relative">
+              <img src="/real-milestones/campus-limbe.jpg" alt="Campus" className="w-full h-full object-cover" />
+              <div className="absolute bottom-4 left-4 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#0b3160]">Limbe Campus</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. VISION SECTION */}
+      <section className="bg-[#0b3160] py-24 px-6 text-white">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 text-red-500">
+              <Microscope size={28} />
+              <span className="text-[10px] font-black uppercase tracking-widest">Our Strategic Vision</span>
+            </div>
+            <h3 className="text-3xl lg:text-5xl font-black uppercase leading-tight">Empowering Clinical Pioneers</h3>
+            <p className="text-slate-300 leading-relaxed font-medium">
+              We bridge theoretical academic mechanics with active field execution. Our mission is to produce graduates who don't just participate in the healthcare, technology, business, and agricultural sectors—they lead them.
+            </p>
+          </div>
+          <div className="relative aspect-video bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border-4 border-white/10">
+            <img src="/programs/biomedical.jpg" alt="Biomedical Sciences" className="w-full h-full object-cover" />
+            <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded text-[10px] font-bold text-white uppercase tracking-widest">Biomedical Lab</div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FOOTER */}
+      <footer className="bg-slate-50 border-t border-slate-200 py-20 px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
+          <div className="col-span-2">
+            <h4 className="font-black text-[#0b3160] text-lg mb-4">BALM OF GILEAD</h4>
+            <p className="text-slate-500 text-sm max-w-xs">Excellence in health and technology education, preparing the next generation of leaders.</p>
+          </div>
+          <div>
+            <h5 className="font-black text-[#0b3160] text-xs uppercase mb-4 tracking-widest">Navigation</h5>
+            <ul className="space-y-2 text-sm text-slate-600">
+              <li>Programs</li>
+              <li>Admissions</li>
+              <li>Gallery</li>
+              <li>Careers</li>
+            </ul>
+          </div>
+          <div>
+            <h5 className="font-black text-[#0b3160] text-xs uppercase mb-4 tracking-widest">Contact</h5>
+            <ul className="space-y-3 text-sm text-slate-600">
+              <li className="flex items-center gap-2"><MapPin size={14}/> Limbe, Cameroon</li>
+              <li className="flex items-center gap-2"><Phone size={14}/> +237 000 000 000</li>
+              <li className="flex items-center gap-2"><Mail size={14}/> balmofgilead059@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
