@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Microscope, MapPin, Phone, Mail } from "lucide-react";
+import { Microscope, MapPin, Phone, Mail, GraduationCap } from "lucide-react";
 
 export default function HomePage() {
   return (
@@ -25,7 +25,44 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. GALLERY PREVIEW */}
+      {/* 2. REFINED INSTITUTIONAL BADGE - FINAL POLISH */}
+<section className="py-16 bg-white">
+  <div className="max-w-4xl mx-auto px-6">
+    <div className="border border-slate-200 rounded-2xl p-10 bg-slate-50/50 shadow-sm">
+      
+      {/* Title with improved letter spacing */}
+      <h2 className="text-center text-[#0b3160] font-black tracking-[0.3em] uppercase text-xs mb-12">
+        Institutional Accreditation & Affiliation
+      </h2>
+
+      {/* Logos & Labels - Logo size increased to h-40/w-40 */}
+      <div className="flex justify-center items-center gap-16 md:gap-24 mb-12">
+        {[
+          { src: "/logos/abhips.png", label: "ABHIPS" },
+          { src: "/logos/uba.png", label: "UNIVERSITY OF BAMENDA" }
+        ].map((item, i) => (
+          <div key={i} className="flex flex-col items-center gap-5">
+            <div className="h-40 w-40 flex items-center justify-center p-3 bg-white rounded-2xl border border-slate-200 shadow-md">
+              <img src={item.src} alt={item.label} className="max-h-full max-w-full object-contain" />
+            </div>
+            <span className="text-[10px] font-black text-[#0b3160] tracking-widest text-center">{item.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Authorization Section - Cleaner and more "Legal" looking */}
+      <div className="pt-8 border-t border-slate-200">
+        <h4 className="text-center text-[9px] font-black text-[#1e3a8a] uppercase tracking-[0.25em] mb-4">Official Authorization Numbers</h4>
+        <div className="flex flex-col items-center gap-2">
+          <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">000663MINEFOP/SG/DFOP/CSACD/OBAC</div>
+          <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">07736/NHA/MNESUP/DDES/ESUP/SDA/MF</div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</section>
+      {/* 3. GALLERY PREVIEW */}
       <section className="py-24 max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
           <div>
@@ -52,7 +89,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 3. VISION SECTION */}
+      {/* 4. VISION SECTION */}
       <section className="bg-[#0b3160] py-24 px-6 text-white">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div className="space-y-6">
@@ -72,7 +109,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. FOOTER */}
+      {/* 5. FOOTER */}
       <footer className="bg-slate-50 border-t border-slate-200 py-20 px-6">
         <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12">
           <div className="col-span-2">
@@ -92,7 +129,7 @@ export default function HomePage() {
             <h5 className="font-black text-[#0b3160] text-xs uppercase mb-4 tracking-widest">Contact</h5>
             <ul className="space-y-3 text-sm text-slate-600">
               <li className="flex items-center gap-2"><MapPin size={14}/> Limbe, Cameroon</li>
-              <li className="flex items-center gap-2"><Phone size={14}/> +237 000 000 000</li>
+              <li className="flex items-center gap-2"><Phone size={14}/> +237 676 247 307</li>
               <li className="flex items-center gap-2"><Mail size={14}/> balmofgilead059@gmail.com</li>
             </ul>
           </div>

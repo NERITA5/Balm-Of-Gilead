@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Phone, GraduationCap, Clock } from "lucide-react";
+import { Menu, X, ChevronDown, Phone, GraduationCap, Clock, MessageCircle } from "lucide-react";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -44,13 +44,13 @@ export default function Navbar() {
           <span className="text-slate-200">Affiliated with The University of Bamenda</span>
         </div>
         <div className="hidden md:flex items-center gap-6">
-          <div className="flex items-center gap-1.5 text-slate-300">
-            <Clock size={13} className="text-red-400" />
-            <span>Admissions Active 2026 / 2027</span>
-          </div>
+          <a href="https://whatsapp.com/channel/0029VbBHrJ29cDDelgGLIs13" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-emerald-400 hover:text-white transition-colors">
+            <MessageCircle size={13} />
+            <span>Join WhatsApp Channel</span>
+          </a>
           <a href="tel:+237676247307" className="flex items-center gap-1.5 text-white hover:text-red-400 transition-colors">
             <Phone size={12} className="fill-white/10" />
-            <span>Hotlines: 676 247 307 / 671 719 692</span>
+            <span>Hotline: 676 247 307</span>
           </a>
         </div>
       </div>
@@ -61,84 +61,70 @@ export default function Navbar() {
       }`}>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between py-3 lg:py-4 gap-4">
+          <div className="flex items-center justify-between py-3 lg:py-4">
             
             {/* Branding Block */}
-            <Link href="/" className="flex items-center gap-4 shrink-0 group">
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.02]">
-                <img src="/logo.png" alt="BAGHIBSTECH Logo" className="w-full h-full object-contain" loading="eager" />
+            <Link href="/" className="flex items-center gap-3 shrink-0 group">
+              <div className="relative w-14 h-14 sm:w-20 sm:h-20 flex items-center justify-center">
+                <img src="/logo.png" alt="BAGHIBSTECH Logo" className="w-full h-full object-contain" />
               </div>
-              <div>
+              <div className="hidden sm:block">
                 <h1 className="font-black text-[#0b3160] tracking-tight leading-none text-xl sm:text-2xl uppercase">BALM OF GILEAD</h1>
-                <p className="text-[10px] sm:text-[11px] font-extrabold text-[#d91e27] tracking-widest uppercase mt-1">
-                  HIGHER INSTITUTE OF BIOMEDICAL SCI. &amp; TECH.
-                </p>
-                <div className="h-[2px] w-16 bg-[#d91e27] mt-1.5 rounded-full transition-all duration-300 group-hover:w-24" />
+                <p className="text-[10px] font-extrabold text-[#d91e27] tracking-widest uppercase mt-1">HIGHER INSTITUTE OF BIOMEDICAL SCI. & TECH.</p>
               </div>
             </Link>
 
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-2">
-              <div className="flex items-center gap-1 mr-4">
-                {navLinks.map((link) =>
-                  link.dropdown ? (
-                    <div key={link.label} className="relative"
-                      onMouseEnter={() => setOpenDropdown(link.label)}
-                      onMouseLeave={() => setOpenDropdown(null)}
-                    >
-                      <button className="flex items-center gap-1 px-3 py-2 text-xs font-black text-[#0b3160]/90 hover:text-[#d91e27] uppercase tracking-wider rounded-lg hover:bg-slate-50 transition-all">
-                        {link.label}
-                        <ChevronDown size={12} className={`transition-transform duration-200 stroke-[2.5] ${openDropdown === link.label ? "rotate-180 text-[#d91e27]" : ""}`} />
-                      </button>
-                      {openDropdown === link.label && (
-                        <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-2xl border border-slate-200/80 py-2 z-50 overflow-hidden">
-                          <div className="absolute top-0 left-0 right-0 h-1 bg-[#d91e27]" />
-                          {link.dropdown.map((item) => (
-                            <Link key={item.label} href={item.href} className="block px-5 py-3 text-xs font-bold text-slate-700 hover:bg-slate-50 hover:text-[#d91e27] border-b border-slate-100 last:border-none transition-colors">
-                              {item.label}
-                            </Link>
-                          ))}
-                        </div>
-                      )}
+              {navLinks.map((link) => (
+                <div key={link.label} className="relative" onMouseEnter={() => setOpenDropdown(link.label)} onMouseLeave={() => setOpenDropdown(null)}>
+                  <Link href={link.href} className="flex items-center gap-1 px-3 py-2 text-xs font-black text-[#0b3160] hover:text-[#d91e27] uppercase tracking-wider rounded-lg transition-all">
+                    {link.label}
+                    {link.dropdown && <ChevronDown size={12} />}
+                  </Link>
+                  
+                  {/* Dropdown Menu */}
+                  {link.dropdown && openDropdown === link.label && (
+                    <div className="absolute top-full left-0 w-64 bg-white shadow-2xl border border-slate-100 rounded-xl py-2 z-50">
+                      {link.dropdown.map((sub) => (
+                        <Link key={sub.label} href={sub.href} className="block px-4 py-3 text-xs font-bold text-[#0b3160] hover:bg-slate-50 hover:text-[#d91e27]">
+                          {sub.label}
+                        </Link>
+                      ))}
                     </div>
-                  ) : (
-                    <Link key={link.label} href={link.href} className="px-3 py-2 text-xs font-black text-[#0b3160]/90 hover:text-[#d91e27] uppercase tracking-wider rounded-lg hover:bg-slate-50 transition-all">
-                      {link.label}
-                    </Link>
-                  )
-                )}
-              </div>
-
-              <Link href="/apply" className="inline-flex items-center justify-center px-6 py-3 bg-[#d91e27] hover:bg-[#b8141b] text-white text-xs font-black rounded-xl uppercase tracking-widest transition-all shadow-md active:scale-98">
-                Apply Online
-              </Link>
+                  )}
+                </div>
+              ))}
+              <Link href="/apply" className="ml-4 px-6 py-3 bg-[#d91e27] text-white text-xs font-black rounded-xl uppercase hover:bg-[#b8141b] transition-all">Apply Online</Link>
             </div>
 
             {/* Mobile Trigger */}
-            <div className="absolute top-4 right-4 lg:hidden">
-              <button className="p-2 rounded-xl text-[#0b3160] hover:bg-slate-50 border border-slate-100 transition"
-                onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle Menu Container">
-                {mobileOpen ? <X size={22} className="stroke-[2.5]" /> : <Menu size={22} className="stroke-[2.5]" />}
-              </button>
-            </div>
+            <button 
+              className="lg:hidden p-3 bg-[#0b3160] text-white rounded-xl shadow-lg border-2 border-white transition-all active:scale-95"
+              onClick={() => setMobileOpen(!mobileOpen)} 
+              aria-label="Toggle Mobile Menu"
+            >
+              {mobileOpen ? <X size={28} className="stroke-[3]" /> : <Menu size={28} className="stroke-[3]" />}
+            </button>
           </div>
         </div>
 
         {/* Mobile Slide Drawer */}
         {mobileOpen && (
-          <div className="lg:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-1 shadow-inner max-h-[calc(100vh-5rem)] overflow-y-auto">
+          <div className="lg:hidden bg-white border-t border-slate-200 px-4 py-6 shadow-2xl">
             {navLinks.map((link) => (
-              <div key={link.label} className="border-b border-slate-50 last:border-none pb-2 last:pb-0">
-                <Link href={link.href} className="block px-4 py-3 text-xs font-black text-[#0b3160] uppercase tracking-wide hover:bg-slate-50 rounded-lg transition" onClick={() => setMobileOpen(false)}>
+              <div key={link.label} className="py-3 border-b border-slate-100">
+                <Link href={link.href} className="text-sm font-bold text-[#0b3160] uppercase block" onClick={() => setMobileOpen(false)}>
                   {link.label}
                 </Link>
               </div>
             ))}
-            <div className="pt-4 px-2">
-              <Link href="/apply" className="block text-center w-full py-3.5 bg-[#d91e27] text-white text-xs font-black rounded-xl tracking-wider uppercase transition shadow-md" onClick={() => setMobileOpen(false)}>
-                Apply Online Now
-              </Link>
-            </div>
+            <Link href="https://whatsapp.com/channel/0029VbBHrJ29cDDelgGLIs13" target="_blank" className="block py-4 text-sm font-bold text-emerald-600 uppercase border-b border-slate-100">
+              Join WhatsApp Channel
+            </Link>
+            <Link href="/apply" className="block text-center mt-6 py-4 bg-[#d91e27] text-white text-sm font-black rounded-xl uppercase" onClick={() => setMobileOpen(false)}>
+              Apply Online Now
+            </Link>
           </div>
         )}
       </nav>

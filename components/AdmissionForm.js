@@ -8,29 +8,40 @@ export default function AdmissionForm() {
     e.preventDefault();
     setLoading(true);
 
-    const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData);
+    try {
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData);
 
-    const res = await fetch('/api/admissions', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    });
+      const res = await fetch('/api/admissions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
 
-    if (res.ok) {
-      window.location.href = "https://wa.me/237676247307?text=Hello,%20I%20have%20just%20submitted%20my%20application%20form%20for%20admission.%20Please%20guide%20me%20on%20the%20next%20steps.";
-    } else {
-      alert("Submission failed. Please try again.");
+      // We explicitly wait for the response to confirm the email was sent
+      if (res.ok) {
+        // Redirect to WhatsApp after successful email dispatch
+        window.location.href = "https://wa.me/237676247307?text=Hello,%20I%20have%20just%20submitted%20my%20application%20form%20for%20admission.%20Please%20guide%20me%20on%20the%20next%20steps.";
+      } else {
+        const errorData = await res.json();
+        console.error("Server Error:", errorData);
+        alert("Submission failed. Please check your internet or try again later.");
+        setLoading(false);
+      }
+    } catch (err) {
+      console.error("Submission error:", err);
+      alert("An unexpected error occurred. Please try again.");
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Registration Fee Notice */}
+    <form onSubmit={handleSubmit} className="space-y-8">
+      
+      {/* 1. REGISTRATION FEE STRUCTURE */}
       <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl">
         <h3 className="font-bold text-[#0b3160] text-sm uppercase tracking-widest mb-3">Registration Fee Structure</h3>
-        <ul className="text-sm text-gray-600 space-y-2" aria-label="Registration fees by program level">
+        <ul className="text-sm text-gray-600 space-y-2">
           <li className="flex justify-between"><span>Vocational Programs:</span> <span className="font-bold text-[#d91e27]">25,000 FRS</span></li>
           <li className="flex justify-between"><span>HND & Degree Programs:</span> <span className="font-bold text-[#d91e27]">30,000 FRS</span></li>
           <li className="flex justify-between"><span>Master’s Programs:</span> <span className="font-bold text-[#d91e27]">50,000 FRS</span></li>
@@ -38,6 +49,23 @@ export default function AdmissionForm() {
         <p className="text-xs text-gray-400 mt-4 italic">*Registration fees are required to process your application.</p>
       </div>
 
+      {/* 2. ADMISSION REQUIREMENTS */}
+      <div className="bg-white border border-slate-200 p-6 rounded-2xl shadow-sm">
+        <h3 className="font-bold text-[#0b3160] text-sm uppercase tracking-widest mb-4">Required Documents for Campus Visit</h3>
+        <ul className="grid gap-2 text-sm text-slate-700">
+          <li className="flex items-center gap-3">✓ Original Birth Certificate</li>
+          <li className="flex items-center gap-3">✓ Photocopy of National ID Card</li>
+          <li className="flex items-center gap-3">✓ Highest Academic Diploma</li>
+          <li className="flex items-center gap-3">✓ 4 Passport-sized Photographs</li>
+        </ul>
+        <div className="mt-4 p-3 bg-blue-50 border border-blue-100 rounded-lg">
+          <p className="text-xs text-[#0b3160] font-semibold italic">
+            📍 Campus Visit: Monday – Friday, 8:00 AM to 4:00 PM for document verification.
+          </p>
+        </div>
+      </div>
+
+      {/* 3. INPUT FIELDS */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
           <label htmlFor="fullName" className="block text-xs font-bold text-gray-500 uppercase mb-1">Full Name</label>
@@ -87,7 +115,7 @@ export default function AdmissionForm() {
         type="submit"
         className="w-full bg-[#d91e27] hover:bg-[#b8141b] text-white py-4 px-6 rounded-xl font-black uppercase tracking-widest transition-all active:scale-95 disabled:opacity-50"
       >
-        {loading ? "Processing..." : "Submit Application"}
+        {loading ? "Processing Application..." : "Submit Application"}
       </button>
     </form>
   );

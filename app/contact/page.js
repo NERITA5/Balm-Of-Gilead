@@ -5,21 +5,39 @@ import { Phone, MapPin, MessageCircle, Send, CheckCircle } from "lucide-react";
 export default function ContactPage() {
   const [form, setForm] = useState({ name: "", phone: "", email: "", program: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form data:", form);
-    setSubmitted(true);
+    setLoading(true);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (response.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Failed to send message. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert("An error occurred. Please check your connection.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      {/* 1. HERO SECTION - Premium Deep Blue Layout matching image_175581.jpg */}
+      {/* 1. HERO SECTION */}
       <section className="bg-[#0b3160] py-20 px-4 relative overflow-hidden">
         <div className="absolute inset-0 bg-opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-red-500 via-transparent to-transparent pointer-events-none" />
-        
         <div className="max-w-4xl mx-auto text-center text-white relative z-10">
           <span className="inline-block text-xs font-bold tracking-widest text-[#d91e27] uppercase mb-4 bg-white/10 px-4 py-1.5 rounded-full">
             Get in Touch
@@ -57,13 +75,12 @@ export default function ContactPage() {
                 <h3 className="font-black text-xs text-gray-400 uppercase tracking-widest border-b border-slate-100 pb-2">
                   Communication Channels
                 </h3>
-                
                 <div className="space-y-4">
                   {[
                     { href: "tel:+237676247307", label: "676 247 307", sub: "Primary Admissions Support", color: "bg-red-50 text-[#d91e27]" },
                     { href: "tel:+237671719692", label: "671 719 692", sub: "Alternative Registrar Line", color: "bg-red-50 text-[#d91e27]" },
                   ].map((item) => (
-                    <a key={item.label} href={item.href} className="flex items-center gap-4 group.block">
+                    <a key={item.label} href={item.href} className="flex items-center gap-4 group block">
                       <div className={`w-11 h-11 rounded-xl ${item.color} flex items-center justify-center shrink-0 transition-transform group-hover:scale-105`}>
                         <Phone size={18} className="stroke-[2.5]" />
                       </div>
@@ -73,8 +90,7 @@ export default function ContactPage() {
                       </div>
                     </a>
                   ))}
-
-                  <a href="https://wa.me/237676247307" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group.block">
+                  <a href="https://wa.me/237676247307" target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 group block">
                     <div className="w-11 h-11 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 transition-transform group-hover:scale-105">
                       <MessageCircle size={18} className="stroke-[2.5]" />
                     </div>
@@ -91,7 +107,6 @@ export default function ContactPage() {
                 <h3 className="font-black text-xs text-gray-400 uppercase tracking-widest border-b border-slate-100 pb-2">
                   Our Locations
                 </h3>
-                
                 <div className="space-y-4">
                   {[
                     { name: "Tombel Campus", address: "Three Corner, Bonamoussadi Quarter, Tombel" },
@@ -138,68 +153,34 @@ export default function ContactPage() {
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Full Name *</label>
-                        <input type="text" name="name" required value={form.name} onChange={handleChange}
-                          placeholder="Your full name"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
+                        <input type="text" name="name" required value={form.name} onChange={handleChange} placeholder="Your full name" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
                       </div>
                       <div>
                         <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Phone Number *</label>
-                        <input type="tel" name="phone" required value={form.phone} onChange={handleChange}
-                          placeholder="6XX XXX XXX"
-                          className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
+                        <input type="tel" name="phone" required value={form.phone} onChange={handleChange} placeholder="6XX XXX XXX" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
                       </div>
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Email Address</label>
-                      <input type="email" name="email" value={form.email} onChange={handleChange}
-                        placeholder="you@email.com"
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
+                      <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="you@email.com" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition font-medium text-[#0b3160]" />
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Program of Interest</label>
-                      <select name="program" value={form.program} onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition bg-white font-medium text-[#0b3160]">
+                      <select name="program" value={form.program} onChange={handleChange} className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition bg-white font-medium text-[#0b3160]">
                         <option value="">Select an entry path...</option>
-                        <optgroup label="Health & Biomedical Sciences">
-                          <option>HND Nursing</option>
-                          <option>HND Midwifery</option>
-                          <option>HND Medical Laboratory Science</option>
-                          <option>HND Sonography</option>
-                          <option>BSc Nursing</option>
-                          <option>Master's in Public Health</option>
-                          <option>Nursing Assistant</option>
-                          <option>Pharmacy Assistant</option>
-                        </optgroup>
-                        <optgroup label="Business & Management">
-                          <option>HND Accountancy</option>
-                          <option>HND Banking and Finance</option>
-                          <option>HND Marketing and Trade</option>
-                        </optgroup>
-                        <optgroup label="School of Engineering">
-                          <option>HND Software Engineering</option>
-                          <option>HND Hardware Engineering</option>
-                        </optgroup>
-                        <optgroup label="School of Agriculture">
-                          <option>HND Crop Production Technology</option>
-                          <option>HND Animal Production Technology</option>
-                        </optgroup>
-                        <optgroup label="Home Economics">
-                          <option>HND Baking and Food Processing</option>
-                          <option>Hotel Management and Catering</option>
-                          <option>Short Catering Program</option>
-                        </optgroup>
+                        <optgroup label="Health & Biomedical Sciences"><option>HND Nursing</option><option>HND Midwifery</option><option>HND Medical Laboratory Science</option><option>HND Sonography</option><option>BSc Nursing</option><option>Master's in Public Health</option><option>Nursing Assistant</option><option>Pharmacy Assistant</option></optgroup>
+                        <optgroup label="Business & Management"><option>HND Accountancy</option><option>HND Banking and Finance</option><option>HND Marketing and Trade</option></optgroup>
+                        <optgroup label="School of Engineering"><option>HND Software Engineering</option><option>HND Hardware Engineering</option></optgroup>
+                        <optgroup label="School of Agriculture"><option>HND Crop Production Technology</option><option>HND Animal Production Technology</option></optgroup>
+                        <optgroup label="Home Economics"><option>HND Baking and Food Processing</option><option>Hotel Management and Catering</option><option>Short Catering Program</option></optgroup>
                       </select>
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-gray-600 uppercase tracking-wider mb-2">Your Message *</label>
-                      <textarea name="message" required value={form.message} onChange={handleChange} rows={4}
-                        placeholder="State your dynamic questions regarding entry files..."
-                        className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition resize-none font-medium text-[#0b3160]" />
+                      <textarea name="message" required value={form.message} onChange={handleChange} rows={4} placeholder="State your dynamic questions regarding entry files..." className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:border-[#0b3160] focus:ring-2 focus:ring-slate-100 outline-none text-sm transition resize-none font-medium text-[#0b3160]" />
                     </div>
-                    <button type="submit"
-                      className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#d91e27] hover:bg-[#b8141b] text-white font-bold rounded-xl transition-all shadow-md shadow-red-950/10 text-sm tracking-wide uppercase"
-                    >
-                      Send Message <Send size={15} className="stroke-[2.5]" />
+                    <button type="submit" disabled={loading} className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#d91e27] hover:bg-[#b8141b] text-white font-bold rounded-xl transition-all shadow-md shadow-red-950/10 text-sm tracking-wide uppercase disabled:opacity-50">
+                      {loading ? "Sending..." : "Send Message"} {!loading && <Send size={15} className="stroke-[2.5]" />}
                     </button>
                   </form>
                 </>

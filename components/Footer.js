@@ -10,13 +10,13 @@ const programLinks = [
 ];
 
 const quickLinks = [
-  { label: "Home",             href: "/" },
-  { label: "About Us",         href: "/about" },
-  { label: "Programs",         href: "/programs" },
-  { label: "Admissions",       href: "/admissions" },
-  { label: "Gallery",          href: "/gallery" },
-  { label: "News",             href: "/news" },
-  { label: "Contact Us",       href: "/contact" },
+  { label: "Home",           href: "/" },
+  { label: "About Us",       href: "/about" },
+  { label: "Programs",       href: "/programs" },
+  { label: "Admissions",     href: "/admissions" },
+  { label: "Gallery",        href: "/gallery" },
+  { label: "News",           href: "/news" },
+  { label: "Contact Us",     href: "/contact" },
 ];
 
 export default function Footer() {
@@ -30,7 +30,6 @@ export default function Footer() {
           {/* 1. Brand Identity Module */}
           <div className="lg:col-span-4 space-y-5">
             <div className="flex items-center gap-4">
-              {/* Official Seal Integration (Sized beautifully for footer weighting) */}
               <div className="w-16 h-16 shrink-0 bg-white/5 rounded-xl p-1 flex items-center justify-center border border-white/10 shadow-md">
                 <img 
                   src="/logo.png" 
@@ -99,7 +98,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* 4. Professional Institutional Contacts & WhatsApp CTA Hub */}
+          {/* 4. Professional Institutional Contacts & WhatsApp Channel CTA */}
           <div className="lg:col-span-4 space-y-6">
             <div>
               <h4 className="font-black text-xs text-white uppercase tracking-widest mb-5 border-b border-white/10 pb-2">
@@ -129,20 +128,20 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Premium WhatsApp Community Anchor Block */}
+            {/* Official WhatsApp Channel Anchor Block */}
             <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
               <div>
-                <p className="text-xs font-black text-white tracking-tight">Join Our WhatsApp Group</p>
-                <p className="text-[11px] text-slate-400 mt-0.5">Stay instantly updated with announcements, admissions, and critical parameters.</p>
+                <p className="text-xs font-black text-white tracking-tight">Follow Our WhatsApp Channel</p>
+                <p className="text-[11px] text-slate-400 mt-0.5">Get official updates, news, and institutional announcements directly in your WhatsApp.</p>
               </div>
               <a 
-                href="https://wa.me/237676247307" 
+                href="https://whatsapp.com/channel/0029VbBHrJ29cDDelgGLIs13" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-100 text-[#0b3160] font-black rounded-lg text-xs tracking-wide uppercase transition-all shadow-sm"
               >
                 <MessageCircle size={15} className="text-emerald-600 fill-emerald-600" />
-                Join WhatsApp Group <ArrowUpRight size={13} className="stroke-[2.5]" />
+                Follow Channel <ArrowUpRight size={13} className="stroke-[2.5]" />
               </a>
             </div>
           </div>
