@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Microscope, MapPin, Phone, Mail, GraduationCap } from "lucide-react";
-
+import { homeMetadata } from "./metadata";
+export const metadata = homeMetadata;
 export default function HomePage() {
   return (
     <main className="bg-white min-h-screen font-sans">

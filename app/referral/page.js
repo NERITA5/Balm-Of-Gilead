@@ -26,8 +26,8 @@ export default function ReferralPage() {
           {[
             { p: "Vocational Programs", t: "275,000 FRS", r: "25,000 FRS" },
             { p: "HND Programs", t: "320,000 FRS", r: "30,000 FRS" },
-            { p: "Direct Degree Programs", t: "350,000 FRS", r: "30,000 FRS" },
-            { p: "Top-Up Bachelor of Science", t: "395,000 FRS", r: "30,000 FRS" },
+            { p: "Direct Degree Programs", t: "450,000 FRS", r: "30,000 FRS" },
+            { p: "Top-Up Bachelor of Science", t: "495,000 FRS", r: "30,000 FRS" },
             { p: "Master Programs (Online/Offline)", t: "650,000 FRS", r: "50,000 FRS" },
           ].map((item, idx) => (
             <div key={idx} className="flex justify-between px-6 py-4 border-b border-slate-100 text-sm">

@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowUpRight, Microscope, Layers, Award, Users, BookOpen } from "lucide-react";
+import { ArrowUpRight, Microscope } from "lucide-react";
 
-// 1. Updated selection with the 3 required real assets
+// Updated galleryItems to include your new /gallery images
 const galleryItems = [
   {
     title: "Official Matriculation Ceremony",
@@ -12,15 +12,30 @@ const galleryItems = [
     size: "lg:col-span-2 lg:row-span-2"
   },
   {
-    title: "First Batch Defense",
-    image: "/real-milestones/first-batch-defense.jpg",
+    title: "Nursing Student Training",
+    image: "/gallery/nursing/nursing-student-1.jpg", // Ensure filename matches
     size: "lg:col-span-1 lg:row-span-1"
   },
   {
-    title: "Limbe Campus Facilities",
-    image: "/real-milestones/campus-limbe.jpg",
+    title: "Sonography Lab Unit",
+    image: "/gallery/sonography/lab-unit.jpg",
     size: "lg:col-span-1 lg:row-span-1"
   },
+  {
+    title: "Caregiver Training Hall",
+    image: "/gallery/sonography/hall-caregivers.jpg",
+    size: "lg:col-span-1 lg:row-span-1"
+  },
+  {
+    title: "Computer Training Unit",
+    image: "/gallery/sonography/computer-unit.jpg",
+    size: "lg:col-span-1 lg:row-span-1"
+  },
+  {
+    title: "First Batch Defense",
+    image: "/real-milestones/first-batch-defense.jpg",
+    size: "lg:col-span-1 lg:row-span-1"
+  }
 ];
 
 export default function GalleryPreview() {
@@ -32,13 +47,13 @@ export default function GalleryPreview() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
           <div className="space-y-4 text-center md:text-left">
             <span className="inline-block text-[11px] font-black tracking-widest text-[#d91e27] uppercase bg-red-50 border border-red-100 px-3.5 py-1.5 rounded-md">
-              Campus Life &amp; Facilities
+              Campus Life & Facilities
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-[#0b3160] uppercase tracking-tight">
               Inside Balm of Gilead
             </h2>
             <p className="text-slate-600 max-w-xl text-xs sm:text-sm font-semibold leading-relaxed">
-              A glimpse into our academic environment, from official matriculations to our physical campus infrastructure.
+              A glimpse into our academic environment, from official matriculations to our modern training units.
             </p>
           </div>
 
@@ -50,7 +65,7 @@ export default function GalleryPreview() {
           </Link>
         </div>
 
-        {/* 3-Image Masonry Grid */}
+        {/* Masonry Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[250px] mb-24">
           {galleryItems.map((item, idx) => (
             <div 
@@ -69,7 +84,7 @@ export default function GalleryPreview() {
           ))}
         </div>
 
-        {/* AI-GENERATED VISION SECTION */}
+        {/* Vision Section */}
         <div className="relative rounded-3xl overflow-hidden h-[400px] flex items-center shadow-2xl border border-white/20">
           <img 
             src="/programs/biomedical.jpg" 
@@ -83,7 +98,7 @@ export default function GalleryPreview() {
               <span className="uppercase font-black tracking-widest text-xs">Vision for the Future</span>
             </div>
             <h3 className="text-3xl md:text-4xl font-black leading-tight">Empowering the Next Generation of Clinical Pioneers</h3>
-            <p className="text-slate-300 font-medium">We blend traditional academic rigor with modern simulated environments to ensure our graduates lead the healthcare evolution in Cameroon.</p>
+            <p className="text-slate-300 font-medium">We blend traditional academic rigor with modern simulated environments to ensure our graduates lead the healthcare evolution.</p>
           </div>
         </div>
 

@@ -61,8 +61,8 @@ const schools = [
 const feeStructure = [
   { program: "Vocational Programs", duration: "1 Year", cost: "275,000 FRS", reg: "25,000 FRS" },
   { program: "HND Programs", duration: "3 Years", cost: "320,000 FRS", reg: "30,000 FRS" },
-  { program: "Direct Degree Programs", duration: "4 Years", cost: "350,000 FRS", reg: "30,000 FRS" },
-  { program: "Top-Up Bachelor of Science", duration: "N/A", cost: "395,000 FRS", reg: "30,000 FRS" },
+  { program: "Direct Degree Programs", duration: "4 Years", cost: "450,000 FRS", reg: "30,000 FRS" },
+  { program: "Top-Up Bachelor of Science", duration: "N/A", cost: "495,000 FRS", reg: "30,000 FRS" },
   { program: "Master Programs (Online/Offline)", duration: "2 Years", cost: "650,000 FRS", reg: "50,000 FRS" },
 ];
 
