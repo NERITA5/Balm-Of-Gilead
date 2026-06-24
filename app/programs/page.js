@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Layers, CreditCard } from "lucide-react";
+import { ArrowRight, Layers, CreditCard, Globe, BookOpenText, GraduationCap } from "lucide-react";
 
 const schools = [
   {
@@ -111,7 +111,31 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* 3. FEE STRUCTURE SECTION */}
+      {/* 3. NEW: FLEXIBLE LEARNING PATHWAYS */}
+      <section className="py-16 px-4 bg-slate-100">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-black text-[#0b3160] mb-12">Flexible Online & Short Programs</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+              <Globe className="mx-auto text-[#d91e27] mb-4" size={40} />
+              <h3 className="font-black text-[#0b3160] mb-2">Online Master Programs</h3>
+              <p className="text-xs text-gray-600">Advanced professional degrees with flexible, remote completion schedules.</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+              <GraduationCap className="mx-auto text-[#0b3160] mb-4" size={40} />
+              <h3 className="font-black text-[#0b3160] mb-2">Online Degree Programs</h3>
+              <p className="text-xs text-gray-600">Earn your Bachelor's degree through our fully digital, student-centered curriculum.</p>
+            </div>
+            <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+              <BookOpenText className="mx-auto text-[#0b3160] mb-4" size={40} />
+              <h3 className="font-black text-[#0b3160] mb-2">Short Course Programs</h3>
+              <p className="text-xs text-gray-600">Certification in specialized fields including Water Hygiene, Sanitation, and Public Health.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FEE STRUCTURE SECTION */}
       <section className="py-16 px-4 bg-white border-t border-slate-100">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-8 justify-center">
@@ -143,7 +167,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {/* 4. CTA */}
+      {/* 5. CTA */}
       <section className="py-20 px-4 text-center">
         <div className="max-w-xl mx-auto bg-[#0b3160] p-12 rounded-3xl text-white">
           <h2 className="text-2xl font-black mb-4">Ready to Enroll?</h2>

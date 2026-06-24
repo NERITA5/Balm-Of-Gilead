@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Heart, Briefcase, Cpu, Leaf, UtensilsCrossed, HelpCircle } from "lucide-react";
+import { ArrowRight, Heart, Briefcase, Cpu, Leaf, UtensilsCrossed, HelpCircle, Globe } from "lucide-react";
 
 const schools = [
   {
@@ -49,13 +49,21 @@ const schools = [
     programs: ["Baking & Food Tech", "Hotel Management", "Catering Programs"],
     href: "/programs#home-economics",
   },
+  {
+    icon: Globe,
+    accentColor: "text-sky-700",
+    iconBg: "bg-sky-50 border-sky-100",
+    title: "Online & Short Courses",
+    description: "Flexible online Master and Degree programs, plus professional certifications in Water Hygiene, Sanitation, and Public Health.",
+    programs: ["Online Master's", "Online Degrees", "Water Hygiene", "Sanitation Cert."],
+    href: "/programs#online",
+  },
 ];
 
 export default function ProgramsPreview() {
   return (
     <section className="bg-slate-50 py-24 px-4 border-b border-slate-200">
       <div className="max-w-7xl mx-auto">
-
         {/* Section Heading Module */}
         <div className="text-center mb-16 space-y-4">
           <span className="inline-block text-[11px] font-black tracking-widest text-[#d91e27] uppercase bg-red-50 border border-red-100 px-4 py-2 rounded-lg">
@@ -65,7 +73,7 @@ export default function ProgramsPreview() {
             Our Schools & Programs
           </h2>
           <p className="text-slate-500 max-w-xl mx-auto text-sm sm:text-base font-semibold leading-relaxed">
-            Five specialized schools focused on equipping you with industry-ready, verified professional skills.
+            Six specialized schools focused on equipping you with industry-ready, verified professional skills.
           </p>
         </div>
 
