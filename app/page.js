@@ -25,45 +25,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. REFINED INSTITUTIONAL BADGE - FINAL POLISH */}
-<section className="py-16 bg-white">
-  <div className="max-w-4xl mx-auto px-6">
-    <div className="border border-slate-200 rounded-2xl p-10 bg-slate-50/50 shadow-sm">
-      
-      {/* Title with improved letter spacing */}
-      <h2 className="text-center text-[#0b3160] font-black tracking-[0.3em] uppercase text-xs mb-12">
-        Institutional Accreditation & Affiliation
-      </h2>
-
-      {/* Logos & Labels - Logo size increased to h-40/w-40 */}
-      <div className="flex justify-center items-center gap-16 md:gap-24 mb-12">
-        {[
-          { src: "/logos/abhips.png", label: "ABHIPS" },
-          { src: "/logos/uba.png", label: "UNIVERSITY OF BAMENDA" }
-        ].map((item, i) => (
-          <div key={i} className="flex flex-col items-center gap-5">
-            <div className="h-40 w-40 flex items-center justify-center p-3 bg-white rounded-2xl border border-slate-200 shadow-md">
-              <img src={item.src} alt={item.label} className="max-h-full max-w-full object-contain" />
+      {/* 2. REFINED INSTITUTIONAL BADGE */}
+      <section className="pt-16 pb-8 bg-white">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="border border-slate-200 rounded-2xl p-10 bg-slate-50/50 shadow-sm">
+            <h2 className="text-center text-[#0b3160] font-black tracking-[0.3em] uppercase text-xs mb-12">
+              Institutional Accreditation & Affiliation
+            </h2>
+            <div className="flex justify-center items-center gap-16 md:gap-24 mb-12">
+              {[
+                { src: "/logos/abhips.png", label: "ABHIPS" },
+                { src: "/logos/uba.png", label: "UNIVERSITY OF BAMENDA" }
+              ].map((item, i) => (
+                <div key={i} className="flex flex-col items-center gap-5">
+                  <div className="h-40 w-40 flex items-center justify-center p-3 bg-white rounded-2xl border border-slate-200 shadow-md">
+                    <img src={item.src} alt={item.label} className="max-h-full max-w-full object-contain" />
+                  </div>
+                  <span className="text-[10px] font-black text-[#0b3160] tracking-widest text-center">{item.label}</span>
+                </div>
+              ))}
             </div>
-            <span className="text-[10px] font-black text-[#0b3160] tracking-widest text-center">{item.label}</span>
+            <div className="pt-8 border-t border-slate-200">
+              <h4 className="text-center text-[9px] font-black text-[#1e3a8a] uppercase tracking-[0.25em] mb-4">Official Authorization Numbers</h4>
+              <div className="flex flex-col items-center gap-2">
+                <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">000663MINEFOP/SG/DFOP/CSACD/OBAC</div>
+                <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">07736/NHA/MNESUP/DDES/ESUP/SDA/MF</div>
+              </div>
+            </div>
           </div>
-        ))}
-      </div>
-
-      {/* Authorization Section - Cleaner and more "Legal" looking */}
-      <div className="pt-8 border-t border-slate-200">
-        <h4 className="text-center text-[9px] font-black text-[#1e3a8a] uppercase tracking-[0.25em] mb-4">Official Authorization Numbers</h4>
-        <div className="flex flex-col items-center gap-2">
-          <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">000663MINEFOP/SG/DFOP/CSACD/OBAC</div>
-          <div className="text-[11px] font-bold text-slate-700 bg-white px-6 py-2 rounded border border-slate-200 shadow-sm">07736/NHA/MNESUP/DDES/ESUP/SDA/MF</div>
         </div>
-      </div>
-      
-    </div>
-  </div>
-</section>
-      {/* 3. GALLERY PREVIEW */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
+      </section>
+
+      {/* 3. GALLERY PREVIEW - Padding Adjusted to pt-8 to close gap */}
+      <section className="pt-8 pb-24 max-w-7xl mx-auto px-6">
         <div className="flex justify-between items-end mb-16">
           <div>
             <span className="text-[10px] font-black uppercase tracking-widest text-[#d91e27]">Institutional Milestones</span>
